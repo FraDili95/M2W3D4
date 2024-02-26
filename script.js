@@ -18,7 +18,67 @@
 // ESERCIZIO 8: Scrivi una funzione per cambiare il colore di background della pagina
 // ESERCIZIO 9: Scrivi una funzione per cambiare l'indirizzo presente nel footer in un altro, fittizio
 // ESERCIZIO 10: Scrivi una funzione per aggiungere una classe CSS ad ogni link Amazon della tabella
-// ESERCIZIO 11: Scrivi una funzione per aggiungere/togliere una classe CSS a tutte le immagini della tabella; questa classe deve modificare la visibilità/invisibilità dell'immagine
-// ESERCIZIO 12: Scrivi una funzione per cambiare il colore del prezzo di ogni prodotto in uno differente, ogni volta che viene invocata
 
 
+//ex 7
+const titolo = document.querySelector("#title");
+function changeColour(x) {
+    x.style.color = "red";
+}
+changeColour(titolo);
+
+//ex8
+const back = document.querySelector("body");
+console.log(back);
+function changeBackColor(params) {
+    params.style.backgroundColor = "green";
+}
+changeBackColor(back);
+
+//ex9
+const address = document.querySelector("form");
+function replaceAddress(address) {
+ address.firstElementChild.textContent = "Via delle filatrici 11";    
+}
+replaceAddress(address);
+//ex10
+const addressTwo = document.getElementsByTagName("a");
+function addClassToA( tag ) {
+    for ( let i = 0; i < tag.length; i++ ){
+        tag[i].classList.add("new_class");
+    }
+}
+addClassToA(addressTwo);
+// ESERCIZIO 11: Scrivi una funzione per aggiungere/togliere una classe CSS
+// a tutte le immagini della tabella; questa classe deve modificare la visibilità/invisibilità dell'immagine
+
+const immagini = document.getElementsByTagName("img");
+const button = document.querySelector(".pulsante_poof");
+
+function addClassToImg( tag ) {
+   
+    for ( let i = 0; i < tag.length; i++ ){
+        if( tag[i].classList.contains("poof") ){
+            tag[i].classList.remove("poof")
+        }else{
+            tag[i].classList.add("poof");
+        } 
+    }
+
+}
+
+function desaparesito(immagini) {
+    addClassToImg(immagini);
+    for ( let i = 0; i < immagini.length; i++ ){
+        if( immagini[i].classList.contains("poof")){
+            immagini[i].style.display = "none";
+        }else{
+            immagini[i].style.display = "block";
+        }
+    }
+   
+}
+
+button.addEventListener ("click", function() {
+    desaparesito(immagini);
+});
